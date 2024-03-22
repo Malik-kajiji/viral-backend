@@ -66,29 +66,8 @@ app.use('/owner',ownerLoginRoutes)
 app.use('/owner-admin',ownerAdminRoutes)
 
 
-// app.use('/video',videoRoutes)
-// app.use('/tasks',taskRoutes)
-
-const {createTasksForThisWeakV2} = require('./controllers/taskController')
-
-app.get('/test-tasks', async (req,res)=>{
-    await createTasksForThisWeakV2()
-    res.status(200).json({message:'done successfully'})
-})
-
-const postModel = require('./models/post')
-const taskModel = require('./models/task')
-const videoModel = require('./models/videos')
-const packageModel = require('./models/package')
-
-app.get('/clear-data',async (req,res) => {
-    await postModel.deleteMany()
-    await taskModel.deleteMany()
-    await videoModel.deleteMany()
-    await packageModel.deleteMany()
-    res.status(200).json({message:'done successfully'})
-})
-
+console.log(`port: ${process.env.PORT}`)
+console.log(`MONGODB_URL: ${process.env.MONGODB_URL}`)
 
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=>{
