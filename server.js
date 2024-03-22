@@ -92,7 +92,7 @@ app.get('/clear-data',async (req,res) => {
 
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=>{
-    app.listen(process.env.PORT,()=>{
+    app.listen(process.env.PORT,'0.0.0.0',()=>{
         console.log(`listening to port ${process.env.PORT} & connected to mongodb`)
     })
 })
