@@ -1,6 +1,7 @@
 const clientModel = require('../../models/customer')
 const virusClientModel = require('../../models/virusClient')
-const saveImageToGCP = require('../../functions/base64toUrl')
+// const saveImageToGCP = require('../../functions/base64toUrl')
+const saveImageToAWS = require('../../functions/base64toAWS')
 
 const getAllCustomer = async (req,res) => {
     try {
@@ -15,7 +16,7 @@ const editCustomer = async (req,res) => {
     try {
         const matches = clientImage.match(/^data:image\/([a-z]+);base64,(.+)$/);
         if(matches){
-            const clientImageUrl = await saveImageToGCP(clientImage)
+            const clientImageUrl = await saveImageToAWS(clientImage)
             const newClient = await clientModel.editCustomer(_id,name,phoneNumber,clientImageUrl,businessType,accountName,accountPassword)
             await virusClientModel.updateMany({clientId:newClient._id},{clientImageUrl})
             res.status(200).json(newClient)
@@ -34,7 +35,7 @@ const addCustomer = async (req,res) => {
         res.status(400).json({message:'الرجاء ملئ الحقول'})
     }
     try {
-        const clientImageUrl = await saveImageToGCP(clientImage)
+        const clientImageUrl = await saveImageToAWS(clientImage)
         const customer = await clientModel.addCustomer(name,password,phoneNumber,clientImageUrl,businessType,accountName,accountPassword);
         res.status(200).json(customer)
     }catch(err) {
