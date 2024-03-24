@@ -42,6 +42,9 @@ app.use(cors({
     credentials:true
 }))
 
+app.get('/',(req,res)=>{
+    res.send('<h1>hello there!!!</h1>')
+})
 // virus end points
 app.use('/virus',virusRouter)
 app.use('/virus-task',virusTaskRoutes)
