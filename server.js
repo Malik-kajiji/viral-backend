@@ -74,7 +74,7 @@ console.log(`MONGODB_URL: ${process.env.MONGODB_URL}`)
 
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=>{
-    app.listen(process.env.PORT,'0.0.0.0',()=>{
+    app.listen(process.env.PORT,'91.108.112.239',()=>{
         console.log(`listening to port ${process.env.PORT} & connected to mongodb`)
     })
 })
