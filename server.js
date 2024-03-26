@@ -43,8 +43,15 @@ app.use(cors({
 }))
 
 app.get('/',(req,res)=>{
+    console.log('got response!!')
     res.send('<h1>hello there!!!</h1>')
 })
+
+app.get('/test',(req,res)=>{
+    console.log('got test!!')
+    res.send('<h1>hello there!!!</h1>')
+})
+
 // virus end points
 app.use('/virus',virusRouter)
 app.use('/virus-task',virusTaskRoutes)
@@ -74,7 +81,7 @@ console.log(`MONGODB_URL: ${process.env.MONGODB_URL}`)
 
 mongoose.connect(process.env.MONGODB_URL)
 .then(()=>{
-    app.listen(process.env.PORT,'91.108.112.239',()=>{
+    app.listen(process.env.PORT,()=>{
         console.log(`listening to port ${process.env.PORT} & connected to mongodb`)
     })
 })
