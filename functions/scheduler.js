@@ -47,4 +47,4 @@ const task = async () => {
 
 // Schedule the task to run at 11:59 PM every day
 // cron.schedule('59 23 * * *', task);
-cron.schedule('34 17 * * *', task);
+cron.schedule('59 23 * * *', task);
